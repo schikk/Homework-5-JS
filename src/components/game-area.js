@@ -2,18 +2,17 @@ import React from 'react';
 import GameCell from './game-cell';
 
 const GameArea = ({ stopGame, gameOver, area }) => {
+    const gameAreaRow = area.map((cell, index) => (
+        <GameCell
+            key={index}
+            cellBomb={cell}
+            stopGame={stopGame}
+            gameOver={gameOver}
+        />
+    ));
     return (
         <tr className="game-area-row">
-            {area.map((cell, index) => {
-                return (
-                    <GameCell
-                        key={index}
-                        cellBomb={cell === 1}
-                        stopGame={stopGame}
-                        gameOver={gameOver}
-                    />
-                )
-            })}
+            {gameAreaRow}
         </tr>
     )
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const GameStartButton = ({ click, randomArea, resetArea }) => {
+const GameStartButton = ({ click, randomArea }) => {
 
     const [show, setShow] = useState(false);
 
@@ -11,13 +11,14 @@ const GameStartButton = ({ click, randomArea, resetArea }) => {
 
     const resetGame = () => {
         randomArea();
-        resetArea();
     }
+
+    const gameBtn = show ? <button onClick={resetGame} className="game-button">Reset game</button> : <button onClick={showAreaHideBtn} className="game-button">Start game</button>
 
     return (
         <div className="buttons-container">
             {
-                show ? <button onClick={resetGame} className="game-button">Reset game</button> : <button onClick={showAreaHideBtn} className="game-button">Start game</button>
+                gameBtn
             }
         </div>
     )

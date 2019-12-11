@@ -5,19 +5,12 @@ import './App.css';
 class App extends React.Component {
 
   state = {
-    area: [
-      [0, 1, 0, 0, 0, 1, 0, 0, 0, 1],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 1, 0, 0, 0, 1, 1, 1, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-      [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-      [0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 1, 0, 0, 1, 0, 0, 0, 0, 0],
-    ],
+    area: [],
     gameOver: false
+  }
+
+  componentDidMount() {
+    this.randomArea();
   }
 
   stopGame = () => {
@@ -29,7 +22,9 @@ class App extends React.Component {
     for (let i = 0; i < 10; i++) {
       area.push([]);
       for (let j = 0; j < 10; j++) {
-        area[i].push(Math.floor((Math.random() * 2)));
+        const random = Math.floor((Math.random() * 2));
+        const isBomb = random ? true : false;
+        area[i].push(isBomb);
       }
     }
     this.setState({ area, gameOver: false });
