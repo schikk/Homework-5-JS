@@ -1,5 +1,4 @@
 import React, { useState, memo, useEffect } from 'react';
-import BombIcon from './bomb.png';
 
 const GameCell = memo(({ cellBomb, gameOver, stopGame }) => {
     const [open, setOpen] = useState(false);
@@ -20,7 +19,7 @@ const GameCell = memo(({ cellBomb, gameOver, stopGame }) => {
 
     return (
         <td onClick={openCell} className={open ? "game-area-cell active" : "game-area-cell"}>
-            {(gameOver && cellBomb) && <img src={BombIcon} alt="bomb" />}
+            {(gameOver && cellBomb) && <img src={process.env.PUBLIC_URL + '/images/bomb.png'} alt="bomb" />}
         </td>
     )
 })

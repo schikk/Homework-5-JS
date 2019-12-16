@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import GameStartButton from './game-start-button';
+import GameButtons from './game-buttons';
 import GameArea from './game-area';
 
 const GameAreaLayout = props => {
@@ -19,24 +19,21 @@ const GameAreaLayout = props => {
         />
     ));
 
-    const gameArea = () => {
-        return (
-            <table className="game-area">
-                <tbody>{gameAreaItems}</tbody>
-            </table>
-        )
-    }
+    const renderGameArea = () => (
+        <table className="game-area">
+            <tbody>{gameAreaItems}</tbody>
+        </table>
+    )
 
     return (
         <>
             <h1>Saper Homework 5-JS</h1>
-            <GameStartButton
+            <GameButtons
                 click={showArea}
                 randomArea={props.randomArea}
             />
-            {
-                show && gameArea()
-            }
+
+            {show && renderGameArea()}
 
         </>
     )

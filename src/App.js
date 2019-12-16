@@ -1,23 +1,20 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import GameAreaLayout from './components/game-area-layout';
 import './App.css';
 
-class App extends React.Component {
+const App = () => {
+  const [area, setArea] = useState([]);
+  const [gameOver, setGameOver] = useState(false);
 
-  state = {
-    area: [],
-    gameOver: false
+  useEffect(() => {
+    randomArea();
+  }, [])
+
+  const stopGame = () => {
+    setGameOver(true)
   }
 
-  componentDidMount() {
-    this.randomArea();
-  }
-
-  stopGame = () => {
-    this.setState({ gameOver: true })
-  }
-
-  randomArea = () => {
+  const randomArea = () => {
     const area = [];
     for (let i = 0; i < 10; i++) {
       area.push([]);
@@ -27,22 +24,21 @@ class App extends React.Component {
         area[i].push(isBomb);
       }
     }
-    this.setState({ area, gameOver: false });
+    setGameOver(false);
+    setArea(area);
   }
 
-  render() {
-    const { area, gameOver } = this.state;
-    return (
-      <div className="page-container">
-        <GameAreaLayout
-          area={area}
-          gameOver={gameOver}
-          stopGame={this.stopGame}
-          randomArea={this.randomArea}
-        />
-      </div>
-    )
-  }
+  return (
+    <div className="page-container">
+      <GameAreaLayout
+        area={area}
+        gameOver={gameOver}
+        stopGame={stopGame}
+        randomArea={randomArea}
+      />
+    </div>
+  )
+
 }
 
 export default App;
